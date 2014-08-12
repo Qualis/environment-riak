@@ -1,0 +1,28 @@
+
+    - name: Update limits
+      lineinfile: dest=/etc/security/limits.conf line="{{ item }}" insertbefore='# End of file'
+      tags:
+      - riak
+      - run
+      with_items:
+      - riak soft nofile 65536
+      - riak hard nofile 65536
+      - vagrant soft nofile 65536
+      - vagrant hard nofile 65536
+      sudo: yes
+
+    - name: Get version 2 release candidate riak .deb
+      get_url: url=http://s3.amazonaws.com/downloads.basho.com/riak/2.0/2.0.0rc1/ubuntu/trusty/riak_2.0.0rc1-1_amd64.deb dest=~/riak_2.0.0rc1-1_amd64.deb
+      tags:
+      - riak
+      - run
+      sudo: yes
+
+    - name: Install riak
+      shell: dpkg -i ~/riak_2.0.0rc1-1_amd64.deb
+      notify:
+      - Restart riak
+      tags:
+      - riak
+      - run
+      sudo: yes

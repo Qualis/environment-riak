@@ -1,0 +1,10 @@
+---
+- hosts: all
+
+  tasks:
+
+    - include: riak.yml
+
+  handlers:
+
+    - include: riak-handler.yml
