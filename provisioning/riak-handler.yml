@@ -1,4 +1,8 @@
 
+    - name: Change to leveldb
+      lineinfile: dest=/etc/riak/riak.conf regexp="storage_backend = bitcask" line="storage_backend = leveldb"
+      sudo: yes
+
     - name: Restart riak
       service: name=riak state=restarted
       sudo: yes
