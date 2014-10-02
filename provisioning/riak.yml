@@ -7,8 +7,6 @@
       with_items:
       - riak soft nofile 65536
       - riak hard nofile 65536
-      - vagrant soft nofile 65536
-      - vagrant hard nofile 65536
       sudo: yes
 
     - name: Get version 2 release candidate riak .deb
