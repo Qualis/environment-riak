@@ -23,15 +23,7 @@
     - name: Install riak
       apt: pkg=riak
       notify:
-      - Restart riak
-      tags:
-      - riak
-      - run
-      sudo: yes
-
-    - name: Change to leveldb
-      lineinfile: dest=/etc/riak/riak.conf regexp="storage_backend = bitcask" line="storage_backend = leveldb"
-      notify:
+      - Change to leveldb
       - Restart riak
       tags:
       - riak
