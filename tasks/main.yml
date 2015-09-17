@@ -21,7 +21,7 @@
       sudo: yes
 
     - name: Install riak
-      apt: pkg=riak=2.1.1-1
+      apt: pkg=riak
       notify:
       - Change to leveldb
       - Restart riak
