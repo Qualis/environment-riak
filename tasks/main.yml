@@ -9,15 +9,19 @@
       - riak hard nofile 65536
       sudo: yes
 
-    - name: Get version 2 release candidate riak .deb
-      get_url: url=http://s3.amazonaws.com/downloads.basho.com/riak/2.0/2.0.0rc1/ubuntu/trusty/riak_2.0.0rc1-1_amd64.deb dest=~/riak_2.0.0rc1-1_amd64.deb
+    - name: Get riak dependencies setup script
+      get_url: url=https://packagecloud.io/install/repositories/basho/riak/script.deb.sh dest=~/riak-script.deb.sh mode=u+rwx
       tags:
       - riak
       - run
       sudo: yes
 
+    - name: Setup riak dependencies
+      command: ~/riak-script.deb.sh
+      sudo: yes
+
     - name: Install riak
-      shell: dpkg -i ~/riak_2.0.0rc1-1_amd64.deb
+      apt: pkg=riak
       notify:
       - Change to leveldb
       - Restart riak
