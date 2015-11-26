@@ -9,4 +9,4 @@
       - riak
 
   roles:
-     - ../environment-riak
+     - .

@@ -1,6 +1,10 @@
 
-    - name: Change to leveldb
-      lineinfile: dest=/etc/riak/riak.conf regexp="storage_backend = bitcask" line="storage_backend = leveldb"
+    - name: Update riak configuration
+      lineinfile: dest=/etc/riak/riak.conf regexp='{{ item.replace }}' line='{{ item.with }}'
+      with_items:
+      - {replace: 'storage_backend = bitcask', with: 'storage_backend = leveldb'}
+      - {replace: 'listener.http.internal = 127.0.0.1:8098', with: 'listener.http.internal = 0.0.0.0:8098'}
+      - {replace: 'listener.protobuf.internal = 127.0.0.1:8087', with: 'listener.protobuf.internal = 0.0.0.0:8087'}
       sudo: yes
 
     - name: Restart riak

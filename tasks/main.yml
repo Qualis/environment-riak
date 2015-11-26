@@ -23,7 +23,7 @@
     - name: Install riak
       apt: pkg=riak
       notify:
-      - Change to leveldb
+      - Update riak configuration
       - Restart riak
       tags:
       - riak
