@@ -8,6 +8,6 @@ RUN ansible-playbook provisioning/playbook.yml && \
     apt-get autoclean -y && \
     apt-get clean -y
 
-CMD bash -c "service riak start && tail -F /var/log/riak/console.log"
+ADD riak.conf /etc/supervisor/conf.d/
 
 EXPOSE 8087 8098
