@@ -18,6 +18,9 @@
 
     - name: Setup riak dependencies
       command: ~/riak-script.deb.sh
+      tags:
+      - riak
+      - run
       sudo: yes
 
     - name: Install riak
