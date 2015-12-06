@@ -6,7 +6,8 @@ ADD . /provisioning
 RUN ansible-playbook provisioning/playbook.yml && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
-    apt-get clean -y
+    apt-get clean -y && \
+    rm -rf /provisioning
 
 ADD riak.conf /etc/supervisor/conf.d/
 
